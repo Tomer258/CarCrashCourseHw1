@@ -10,10 +10,11 @@
         android:layout_width="match_parent"
         android:baselineAligned="false"
         android:layout_height="0dp"
-        android:id="@+id/vertivalLayoutContainer"
+        android:id="@+id/verticalLayoutContainer"
         android:layout_weight="1"
         android:orientation="horizontal">
-      <LinearLayout
+        <!-- First Lane -->
+        <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:id="@+id/firstLane"
@@ -21,20 +22,67 @@
           android:background="@drawable/road"
           android:gravity="bottom|center_horizontal"
           android:layout_weight="1">
+
+          <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+                android:id="@+id/firstLaneDeer1"
+                />
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
-                android:contentDescription="Deer"
-                android:id="@+id/firstLaneDeer"
+                android:contentDescription="@string/deer"
+                android:id="@+id/firstLaneDeer2"
                 />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+                android:contentDescription="@string/deer"
+                android:id="@+id/firstLaneDeer3"
+                />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+                android:contentDescription="@string/deer"
+                android:id="@+id/firstLaneDeer4"
+                />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+                android:contentDescription="@string/deer"
+                android:id="@+id/firstLaneDeer5"
+                />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+                android:contentDescription="@string/deer"
+                android:id="@+id/firstLaneDeer6"
+                />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+                android:contentDescription="@string/deer"
+                android:id="@+id/firstLaneDeer7"
+                />
+
           <ImageView
+              android:id="@+id/specialPosFirstLane"
               android:layout_width="80dp"
               android:layout_height="80dp"
               android:src="@drawable/car"
-              android:contentDescription="carLane1"
+              android:contentDescription="@string/carlane1"
               />
+
       </LinearLayout>
+        <!-- Second Lane -->
       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -47,16 +95,61 @@
               android:layout_width="80dp"
               android:layout_height="80dp"
               android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
-              android:contentDescription="Deer"
-              android:id="@+id/SecondLaneDeer"
+              android:contentDescription="@string/deer"
+              android:id="@+id/SecondLaneDeer1"
               />
           <ImageView
               android:layout_width="80dp"
               android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/SecondLaneDeer2"
+              />
+          <ImageView
+              android:layout_width="80dp"
+              android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/SecondLaneDeer3"
+              />
+          <ImageView
+              android:layout_width="80dp"
+              android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/SecondLaneDeer4"
+              />
+          <ImageView
+              android:layout_width="80dp"
+              android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/SecondLaneDeer5"
+              />
+          <ImageView
+              android:layout_width="80dp"
+              android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/SecondLaneDeer6"
+              />
+          <ImageView
+              android:layout_width="80dp"
+              android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/SecondLaneDeer7"
+              />
+
+          <ImageView
+              android:id="@+id/specialPosSecondLane"
+              android:layout_width="80dp"
+              android:layout_height="80dp"
               android:src="@drawable/car"
-              android:contentDescription="carLane2"
+              android:contentDescription="@string/carlane2"
               />
       </LinearLayout>
+        <!-- Third Lane -->
       <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -69,15 +162,58 @@
               android:layout_width="80dp"
               android:layout_height="80dp"
               android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
-              android:contentDescription="Deer"
-              android:id="@+id/ThirdLaneDeer"
+              android:contentDescription="@string/deer"
+              android:id="@+id/ThirdLaneDeer1"
               />
           <ImageView
               android:layout_width="80dp"
               android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/ThirdLaneDeer2"
+              />
+          <ImageView
+              android:layout_width="80dp"
+              android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/ThirdLaneDeer3"
+              />
+          <ImageView
+              android:layout_width="80dp"
+              android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/ThirdLaneDeer4"
+              />
+          <ImageView
+              android:layout_width="80dp"
+              android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/ThirdLaneDeer5"
+              />
+          <ImageView
+              android:layout_width="80dp"
+              android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/ThirdLaneDeer6"
+              />
+          <ImageView
+              android:layout_width="80dp"
+              android:layout_height="80dp"
+              android:src="@drawable/plyo_w39i_210318_ss4mp_generated"
+              android:contentDescription="@string/deer"
+              android:id="@+id/ThirdLaneDeer7"
+              />
+          <ImageView
+              android:id="@+id/specialPosThirdLane"
+              android:layout_width="80dp"
+              android:layout_height="80dp"
               android:layout_gravity="center_horizontal"
               android:src="@drawable/car"
-              android:contentDescription="carLane3"
+              android:contentDescription="@string/carlane3"
               />
       </LinearLayout>
 
@@ -99,7 +235,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:contentDescription="leftBTN"
+            android:contentDescription="@string/leftbtn"
             />
         <LinearLayout
             android:layout_width="160dp"
@@ -113,19 +249,19 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/heart"
-                android:contentDescription="Health_Heart1"/>
+                android:contentDescription="@string/health_heart1"/>
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/heart"
                 android:layout_marginHorizontal="5dp"
-                android:contentDescription="Health_Heart2"
+                android:contentDescription="@string/health_heart2"
                 />
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/heart"
-                android:contentDescription="Health_Heart3"
+                android:contentDescription="@string/health_heart3"
                 />
 
         </LinearLayout>
@@ -139,7 +275,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/baseline_arrow_forward_24"
-            android:contentDescription="rightBTN"
+            android:contentDescription="@string/rightbtn"
             />
 
 
