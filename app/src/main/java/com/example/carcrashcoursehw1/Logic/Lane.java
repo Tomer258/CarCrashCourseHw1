@@ -10,7 +10,15 @@ public class Lane {
     private int isCarInLane=0;
     private ImageView[] objects =new ImageView[8];
 
-    public Lane(int isCarInLane,ImageView[] objects)
+    public int getIsCarInLane() {
+        return isCarInLane;
+    }
+
+    public void setIsCarInLane(int isCarInLane) {
+        this.isCarInLane = isCarInLane;
+    }
+
+    public Lane(int isCarInLane, ImageView[] objects)
     {
         if (objects.length!=8)
             Log.e("Lane Copy","arrays not same size");
@@ -45,6 +53,10 @@ public class Lane {
                 this.objects[index].setVisibility(View.INVISIBLE);
             else if (mode.equals("on"))
                 this.objects[index].setVisibility(View.VISIBLE);
+    }
+
+    public ImageView getItemInLane(int index){
+        return this.objects[index];
     }
 
 }

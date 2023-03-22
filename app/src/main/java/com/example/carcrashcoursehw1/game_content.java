@@ -3,17 +3,46 @@ package com.example.carcrashcoursehw1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.carcrashcoursehw1.Logic.Lane;
 
 public class game_content extends AppCompatActivity {
     private Lane mLane1,mLane2,mLane3;
+    private ImageButton rightBtn,leftBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_content);
         initialLanes();
+        initialStartingValues();
+    }
+
+    private void initialStartingValues() {
+        rightBtn=findViewById(R.id.RightBTN);
+        leftBtn=findViewById(R.id.leftBTN);
+        setBtnOnClicks();
+    }
+
+    private void setBtnOnClicks() {
+        rightBtn.setOnClickListener(v -> moveCarRight());
+
+        leftBtn.setOnClickListener(v -> moveCarLeft());
+    }
+
+    private void moveCarLeft() {
+        if (mLane2.getIsCarInLane()==1)
+        {
+            mLane2.setDeerVisibility(7,"off");
+            mLane2.getItemInLane(7).setImageResource(R.drawable.plyo_w39i_210318_ss4mp_generated);
+            mLane1.getItemInLane(7).setImageResource(R.drawable.car);
+            mLane1.setDeerVisibility(7,"on");
+        }
+    }
+
+    private void moveCarRight() {
 
     }
 
