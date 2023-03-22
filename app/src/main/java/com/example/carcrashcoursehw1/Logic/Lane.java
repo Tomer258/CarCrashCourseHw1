@@ -18,13 +18,13 @@ public class Lane {
             System.arraycopy(objects, 0, this.objects, 0, objects.length);
         }
         for (int i = 1; i < this.objects.length-1; i++) {
-            //this.objects[i].setVisibility(View.INVISIBLE);
+            this.objects[i].setVisibility(View.INVISIBLE);
         }
         if (isCarInLane==1)
             this.objects[objects.length-1].setImageResource(R.drawable.car);
         else {
             this.objects[objects.length - 1].setImageResource(R.drawable.plyo_w39i_210318_ss4mp_generated);
-            //this.objects[objects.length - 1].setVisibility(View.INVISIBLE);
+            this.objects[objects.length - 1].setVisibility(View.INVISIBLE);
         }
     }
 

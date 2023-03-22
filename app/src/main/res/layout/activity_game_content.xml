@@ -5,13 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".game_content"
+    android:gravity="center"
+    android:background="@drawable/backgroundcar"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        >
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/heart"
+            android:contentDescription="@string/health_heart1"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/heart"
+            android:layout_marginHorizontal="5dp"
+            android:contentDescription="@string/health_heart2"
+            />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/heart"
+            android:contentDescription="@string/health_heart3"
+            />
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:baselineAligned="false"
-        android:layout_height="0dp"
+        android:layout_height="640dp"
         android:id="@+id/verticalLayoutContainer"
-        android:layout_weight="1"
+
         android:orientation="horizontal">
         <!-- First Lane -->
         <LinearLayout
@@ -237,34 +265,7 @@
             android:layout_marginTop="10dp"
             android:contentDescription="@string/leftbtn"
             />
-        <LinearLayout
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:layout_alignStart="@+id/leftBTN"
-            android:layout_alignEnd="@+id/RightBTN"
-            android:layout_marginTop="10dp"
-            >
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/heart"
-                android:contentDescription="@string/health_heart1"/>
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/heart"
-                android:layout_marginHorizontal="5dp"
-                android:contentDescription="@string/health_heart2"
-                />
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/heart"
-                android:contentDescription="@string/health_heart3"
-                />
 
-        </LinearLayout>
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
