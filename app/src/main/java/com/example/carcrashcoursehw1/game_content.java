@@ -27,23 +27,43 @@ public class game_content extends AppCompatActivity {
     }
 
     private void setBtnOnClicks() {
-        rightBtn.setOnClickListener(v -> moveCarRight());
+        rightBtn.setOnClickListener(v -> moveCar(1));
 
-        leftBtn.setOnClickListener(v -> moveCarLeft());
+        leftBtn.setOnClickListener(v -> moveCar(0));
     }
-
-    private void moveCarLeft() {
-        if (mLane2.getIsCarInLane()==1)
+    private  void moveCar(int direction)
+    {
+        switch (direction)
         {
-            mLane2.setDeerVisibility(7,"off");
-            mLane2.getItemInLane(7).setImageResource(R.drawable.plyo_w39i_210318_ss4mp_generated);
-            mLane1.getItemInLane(7).setImageResource(R.drawable.car);
-            mLane1.setDeerVisibility(7,"on");
+            case 1:
+            {
+                if (mLane2.getIsCarInLane()==1)
+                {
+                    mLane2.setCarInLane(0);
+                    mLane3.setCarInLane(1);
+                }
+                else if (mLane1.getIsCarInLane()==1)
+                {
+                    mLane1.setCarInLane(0);
+                    mLane2.setCarInLane(1);
+                }
+                break;
+            }
+            case 0:
+            {
+                if (mLane2.getIsCarInLane()==1)
+                {
+                    mLane2.setCarInLane(0);
+                    mLane1.setCarInLane(1);
+                }
+                else if (mLane3.getIsCarInLane()==1)
+                {
+                    mLane3.setCarInLane(0);
+                    mLane2.setIsCarInLane(1);
+                }
+                break;
+            }
         }
-    }
-
-    private void moveCarRight() {
-
     }
 
     private void initialLanes() {
