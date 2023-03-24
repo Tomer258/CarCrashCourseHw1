@@ -3,6 +3,7 @@ package com.example.carcrashcoursehw1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -31,35 +32,45 @@ public class game_content extends AppCompatActivity {
 
         leftBtn.setOnClickListener(v -> moveCar(0));
     }
-    private  void moveCar(int direction)
+    private  void moveCar(int direction)//1 = Right, 0 = Left
     {
         switch (direction)
         {
             case 1:
             {
+                Log.i("case1","Going Right");
                 if (mLane2.getIsCarInLane()==1)
                 {
                     mLane2.setCarInLane(0);
+                    Log.i("Right_Lane2GoingOff",mLane2.getIsCarInLane()+"");
                     mLane3.setCarInLane(1);
+                    Log.i("Right_Lane3GoingOn",mLane3.getIsCarInLane()+"");
                 }
                 else if (mLane1.getIsCarInLane()==1)
                 {
                     mLane1.setCarInLane(0);
+                    Log.i("Right_Lane1GoingOff",mLane1.getIsCarInLane()+"");
                     mLane2.setCarInLane(1);
+                    Log.i("Right_Lane2GoingOn",mLane2.getIsCarInLane()+"");
                 }
                 break;
             }
             case 0:
             {
+                Log.i("case0","Going Left");
                 if (mLane2.getIsCarInLane()==1)
                 {
                     mLane2.setCarInLane(0);
+                    Log.i("Left_Lane2GoingOff",mLane2.getIsCarInLane()+"");
                     mLane1.setCarInLane(1);
+                    Log.i("Left_Lane1GoingOn",mLane1.getIsCarInLane()+"");
                 }
                 else if (mLane3.getIsCarInLane()==1)
                 {
                     mLane3.setCarInLane(0);
-                    mLane2.setIsCarInLane(1);
+                    Log.i("Left_Lane3GoingOff",mLane3.getIsCarInLane()+"");
+                    mLane2.setCarInLane(1);
+                    Log.i("Left_Lane2GoingOn",mLane2.getIsCarInLane()+"");
                 }
                 break;
             }
