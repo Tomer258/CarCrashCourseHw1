@@ -1,15 +1,18 @@
 package com.example.carcrashcoursehw1.Logic;
 
+import android.app.Activity;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class gameManager {
+public class gameManager  {
 
    private final Timer obsGenTimer=new Timer();
    private final Lane[] lanes;
-
    public Lane getLanes(int index) {
       return lanes[index];
    }
@@ -64,5 +67,26 @@ public class gameManager {
    }
 
 
+
+   public static void removeHeart()
+   {
+      Log.i("Game Manager: ","CRASH!!!!!!!!!!!!!!!! -1 HP");
+   }
+
+   public void runGame()
+   {
+      obsGenTimer.scheduleAtFixedRate(new TimerTask() {
+         @Override
+         public void run() {
+            for (Lane lane : lanes) {
+               Random r = new Random();
+               int randomNum = r.nextInt(100) + 1;
+               if (randomNum >= 50) {
+                  lane.runLane();
+               }
+            }
+         }
+      },0,2000);
+   }
 
 }

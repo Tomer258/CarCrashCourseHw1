@@ -1,17 +1,11 @@
 package com.example.carcrashcoursehw1.Logic;
 
-import android.app.Activity;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.carcrashcoursehw1.R;
-
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.LogRecord;
 
 public class Lane {
     private int isCarInLane = 0,index=0;
@@ -80,13 +74,15 @@ public class Lane {
 
     public void runLane()
     {
-        timer =new CountDownTimer(DELAY*objects.length,DELAY) {
+        timer =new CountDownTimer((long) DELAY *objects.length,DELAY) {
             @Override
             public void onTick(long l) {
                 Log.d("LaneTimer","working on index: " +index+"");
                 setDeerVisibility(index,"on");
                 if (index>0)
                     setDeerVisibility(index-1,"off");
+                if (index==7 && isCarInLane==1)
+                    gameManager.removeHeart();
 
                 index++;
             }
@@ -94,9 +90,13 @@ public class Lane {
             @Override
             public void onFinish() {
                 index=0;
-                setDeerVisibility(7,"off");
+                if (isCarInLane==0)
+                    setDeerVisibility(7,"off");
                 Log.d("LaneTimer","Timer D3d");
             }
         }.start();
     }
+
+
+
 }

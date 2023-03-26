@@ -15,15 +15,16 @@ import com.example.carcrashcoursehw1.Logic.gameManager;
 public class game_content extends AppCompatActivity {
     private Lane mLane1,mLane2,mLane3;
     private ImageButton rightBtn,leftBtn;
-
+    private ImageView[] hearts;
     private gameManager gm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_content);
-        initialGameManager();
         initialStartingValues();
-        gm.getLanes(0).runLane();
+        initialGameManager();
+        //gm.getLanes(1).runLane();
+        //gm.runGame();
 
 
     }
@@ -53,6 +54,9 @@ public class game_content extends AppCompatActivity {
         rightBtn=findViewById(R.id.RightBTN);
         leftBtn=findViewById(R.id.leftBTN);
         setBtnOnClicks();
+
+        hearts =new ImageView[]{findViewById(R.id.heart1),findViewById(R.id.heart2),findViewById(R.id.heart3)};
+
     }
 
     private void setBtnOnClicks() {

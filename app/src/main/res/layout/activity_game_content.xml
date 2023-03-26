@@ -15,11 +15,13 @@
         android:layout_marginTop="10dp"
         >
         <ImageView
+            android:id="@+id/heart1"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/heart"
             android:contentDescription="@string/health_heart1"/>
         <ImageView
+            android:id="@+id/heart2"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/heart"
@@ -27,6 +29,7 @@
             android:contentDescription="@string/health_heart2"
             />
         <ImageView
+            android:id="@+id/heart3"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/heart"
@@ -106,6 +109,7 @@
               android:layout_height="80dp"
               android:src="@drawable/car"
               android:contentDescription="@string/carlane1"
+              android:tag="deer"
               />
 
       </LinearLayout>
@@ -174,6 +178,7 @@
               android:layout_height="80dp"
               android:src="@drawable/car"
               android:contentDescription="@string/carlane2"
+              android:tag="car"
               />
       </LinearLayout>
         <!-- Third Lane -->
@@ -241,6 +246,7 @@
               android:layout_gravity="center_horizontal"
               android:src="@drawable/car"
               android:contentDescription="@string/carlane3"
+              android:tag="deer"
               />
       </LinearLayout>
 
