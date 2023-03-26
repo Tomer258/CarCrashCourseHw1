@@ -260,6 +260,7 @@
             android:src="@drawable/baseline_arrow_back_24"
             android:backgroundTint="@color/white"
             android:contentDescription="@string/leftbtn"
+            android:layout_margin="10dp"
             />
         <View
             android:layout_width="match_parent"
@@ -272,6 +273,7 @@
             android:background="@drawable/round_button"
             android:src="@drawable/baseline_arrow_forward_24"
             android:contentDescription="@string/rightbtn"
+            android:layout_margin="10dp"
             />
 
     </LinearLayout>
