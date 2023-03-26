@@ -23,6 +23,9 @@ public class game_content extends AppCompatActivity {
         setContentView(R.layout.activity_game_content);
         initialGameManager();
         initialStartingValues();
+        gm.getLanes(0).runLane();
+
+
     }
 
     private void initialGameManager() {

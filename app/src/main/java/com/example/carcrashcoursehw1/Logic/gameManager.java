@@ -10,6 +10,10 @@ public class gameManager {
    private final Timer obsGenTimer=new Timer();
    private final Lane[] lanes;
 
+   public Lane getLanes(int index) {
+      return lanes[index];
+   }
+
    public gameManager(Lane[] lanes) {
       this.lanes = lanes;
    }
