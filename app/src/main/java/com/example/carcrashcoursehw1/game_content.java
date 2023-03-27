@@ -24,7 +24,7 @@ public class game_content extends AppCompatActivity {
         initialStartingValues();
         initialGameManager();
         //gm.getLanes(1).runLane();
-        //gm.runGame();
+        gm.runGame();
 
 
     }

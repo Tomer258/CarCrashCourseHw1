@@ -7,13 +7,13 @@ import android.widget.ImageView;
 
 import com.example.carcrashcoursehw1.R;
 
+
+
 public class Lane {
     private int isCarInLane = 0,index=0;
     private final ImageView[] objects = new ImageView[8];
 
-    private CountDownTimer timer;
-
-    public final int DELAY = 1000;
+    public final int DELAY = 200;
 
     public Lane(int isCarInLane, ImageView[] objects) {
         if (objects.length != 8)
@@ -60,10 +60,6 @@ public class Lane {
         }
     }
 
-    public ImageView getItemInLane(int index) {
-        return this.objects[index];
-    }
-
     public int getIsCarInLane() {
         return this.isCarInLane;
     }
@@ -74,14 +70,14 @@ public class Lane {
 
     public void runLane()
     {
-        timer =new CountDownTimer((long) DELAY *objects.length,DELAY) {
+        new CountDownTimer((long) DELAY * objects.length, DELAY) {
             @Override
             public void onTick(long l) {
-                Log.d("LaneTimer","working on index: " +index+"");
-                setDeerVisibility(index,"on");
-                if (index>0)
-                    setDeerVisibility(index-1,"off");
-                if (index==7 && isCarInLane==1)
+                Log.d("LaneTimer", "working on index: " + index + "");
+                setDeerVisibility(index, "on");
+                if (index > 0)
+                    setDeerVisibility(index - 1, "off");
+                if (index == 7 && isCarInLane == 1)
                     gameManager.removeHeart();
 
                 index++;
@@ -89,10 +85,13 @@ public class Lane {
 
             @Override
             public void onFinish() {
-                index=0;
-                if (isCarInLane==0)
-                    setDeerVisibility(7,"off");
-                Log.d("LaneTimer","Timer D3d");
+                index = 0;
+                if (isCarInLane == 0)
+                    for (int i = 0; i < objects.length; i++) {
+                        setDeerVisibility(i, "off");
+                    }
+
+                Log.d("LaneTimer", "Timer D3d");
             }
         }.start();
     }
