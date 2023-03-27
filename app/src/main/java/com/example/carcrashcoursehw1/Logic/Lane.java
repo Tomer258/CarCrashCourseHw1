@@ -103,8 +103,12 @@ public class Lane {
                 index = 0;
                 if (isCarInLane == 0)
                     for (int i = 0; i < objects.length; i++) {
-                        setDeerVisibility(i, "off");
+                            setDeerVisibility(i, "off");
                     }
+                else
+                {
+                    setDeerVisibility(7, "on");
+                }
 
                 Log.d("LaneTimer", "Timer D3d");
             }

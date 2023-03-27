@@ -41,7 +41,7 @@ public class game_content extends AppCompatActivity {
         Lane mLane1 = new Lane(0, iLane1);
         Lane mLane2= new Lane(1,iLane2);
         Lane mLane3= new Lane(0,iLane3);
-        gm =new gameManager(new Lane[]{mLane1, mLane2, mLane3},
+        gm =new gameManager(this,new Lane[]{mLane1, mLane2, mLane3},
             new ImageView[]{findViewById(R.id.heart1),findViewById(R.id.heart2),findViewById(R.id.heart3)});
         gm.runGame();
 

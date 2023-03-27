@@ -1,10 +1,14 @@
 package com.example.carcrashcoursehw1.Logic;
 
+import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-
+import android.widget.Toast;
 import com.example.carcrashcoursehw1.OnCustomEventListener;
 
 import java.util.Random;
@@ -15,9 +19,12 @@ public class gameManager implements OnCustomEventListener {
    private final Lane[] lanes;
    private final ImageView[] hearts;
    private int droppedHeartCounter=0;
+   private final Context c;
+   Vibrator vibrator;
 
-
-   public gameManager(Lane[] lanes, ImageView[] hearts) {
+   public gameManager(Context c,Lane[] lanes, ImageView[] hearts) {
+      this.c=c;
+      vibrator=(Vibrator)c.getSystemService(Context.VIBRATOR_SERVICE);
       this.lanes = lanes;
       for (int i = 0; i < this.lanes.length; i++) {
          lanes[i].setOnCustomEventListener(this);
@@ -74,6 +81,13 @@ public class gameManager implements OnCustomEventListener {
          droppedHeartCounter=0;
          gameOver();
       }
+      new Handler(Looper.getMainLooper()).post(() -> {
+         Toast.makeText(c,"Ouch",Toast.LENGTH_SHORT).show();
+         // Vibrate for 500 milliseconds
+            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+      });
+
+
    }
 
    private void gameOver() {
@@ -106,6 +120,7 @@ public class gameManager implements OnCustomEventListener {
    @Override
    public void onEvent() {
       removeHeart();
+
    }
 
 }
