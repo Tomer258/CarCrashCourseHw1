@@ -1,33 +1,35 @@
 package com.example.carcrashcoursehw1.Logic;
 
-import android.app.Activity;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.carcrashcoursehw1.OnCustomEventListener;
+
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class gameManager {
 
-   private final Timer obsGenTimer = new Timer();
+public class gameManager implements OnCustomEventListener {
+
    private final Lane[] lanes;
+   private final ImageView[] hearts;
+   private int droppedHeartCounter=0;
 
-   public Lane getLanes(int index) {
-      return lanes[index];
-   }
 
-   public gameManager(Lane[] lanes) {
+   public gameManager(Lane[] lanes, ImageView[] hearts) {
       this.lanes = lanes;
+      for (int i = 0; i < this.lanes.length; i++) {
+         lanes[i].setOnCustomEventListener(this);
+      }
+      this.hearts=hearts;
    }
-
    public void moveCar(int direction)//1 = Right, 0 = Left, Works only with 3 Lanes!!!!!
    {
       switch (direction) {
          case 1: {
             Log.i("case1", "Going Right");
+            assert lanes != null;
             if (lanes[1].getIsCarInLane() == 1) {
                lanes[1].setCarInLane(0);
                Log.i("Right_Lane2GoingOff", lanes[1].getIsCarInLane() + "");
@@ -43,6 +45,7 @@ public class gameManager {
          }
          case 0: {
             Log.i("case0", "Going Left");
+            assert lanes != null;
             if (lanes[1].getIsCarInLane() == 1) {
                lanes[1].setCarInLane(0);
                Log.i("Left_Lane2GoingOff", lanes[1].getIsCarInLane() + "");
@@ -58,10 +61,23 @@ public class gameManager {
          }
       }
    }
-
-
-   public static void removeHeart() {
+   public void removeHeart()//lo tov
+   {
       Log.i("Game Manager: ", "CRASH!!!!!!!!!!!!!!!! -1 HP");
+      if (this.hearts.length-1-droppedHeartCounter>=0)
+      {
+         this.hearts[droppedHeartCounter].setVisibility(View.INVISIBLE);
+         droppedHeartCounter++;
+      }
+      else
+      {
+         droppedHeartCounter=0;
+         gameOver();
+      }
+   }
+
+   private void gameOver() {
+      Log.i("Game Manager: ", "GAME OVER");
    }
 
    public void runGame() {
@@ -86,4 +102,10 @@ public class gameManager {
       };
       handler.postDelayed(runnable,0);
    }
+
+   @Override
+   public void onEvent() {
+      removeHeart();
+   }
+
 }

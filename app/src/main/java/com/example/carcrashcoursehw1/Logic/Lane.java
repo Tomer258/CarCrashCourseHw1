@@ -5,7 +5,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.carcrashcoursehw1.OnCustomEventListener;
 import com.example.carcrashcoursehw1.R;
+
 
 
 
@@ -14,7 +16,12 @@ public class Lane {
     private final ImageView[] objects = new ImageView[8];
 
     public final int DELAY = 200;
-
+   // private gameManager gm=new gameManager();
+    private OnCustomEventListener mListener;
+    public void setOnCustomEventListener(OnCustomEventListener mListener)
+    {
+        this.mListener=mListener;
+    }
     public Lane(int isCarInLane, ImageView[] objects) {
         if (objects.length != 8)
             Log.e("Lane Copy", "arrays not same size");
@@ -70,6 +77,7 @@ public class Lane {
 
     public void runLane()
     {
+
         new CountDownTimer((long) DELAY * objects.length, DELAY) {
             @Override
             public void onTick(long l) {
@@ -78,9 +86,16 @@ public class Lane {
                 if (index > 0)
                     setDeerVisibility(index - 1, "off");
                 if (index == 7 && isCarInLane == 1)
-                    gameManager.removeHeart();
+                {
+                    //gm.removeHeart();
+                    new Thread(() -> {
+                        if (mListener!=null)
+                            mListener.onEvent();
+                    }).start();
+                }
 
                 index++;
+
             }
 
             @Override
@@ -95,7 +110,6 @@ public class Lane {
             }
         }.start();
     }
-
 
 
 }
