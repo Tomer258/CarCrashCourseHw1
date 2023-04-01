@@ -16,10 +16,6 @@ public class game_content extends AppCompatActivity {
         setContentView(R.layout.activity_game_content);
         initialStartingValues();
         initialGameManager();
-        //gm.getLanes(1).runLane();
-
-
-
     }
 
     private void initialGameManager() {
@@ -50,13 +46,10 @@ public class game_content extends AppCompatActivity {
         rightBtn=findViewById(R.id.RightBTN);
         leftBtn=findViewById(R.id.leftBTN);
         setBtnOnClicks();
-
-
     }
 
     private void setBtnOnClicks() {
         rightBtn.setOnClickListener(v -> gm.moveCar(1));
-
         leftBtn.setOnClickListener(v -> gm.moveCar(0));
     }
 

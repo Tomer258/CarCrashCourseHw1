@@ -7,14 +7,9 @@ import android.widget.ImageView;
 
 import com.example.carcrashcoursehw1.OnCustomEventListener;
 import com.example.carcrashcoursehw1.R;
-
-
-
-
 public class Lane {
     private int isCarInLane = 0,index=0;
     private final ImageView[] objects = new ImageView[8];
-
     public final int DELAY = 200;
    // private gameManager gm=new gameManager();
     private OnCustomEventListener mListener;
@@ -54,7 +49,6 @@ public class Lane {
             this.objects[7].setVisibility(View.INVISIBLE);
         }
     }
-
     public void setDeerVisibility(int index, String mode) {
         if (index >= 0 && index <= 7) {
             if (mode.equals("off")) {
@@ -66,11 +60,9 @@ public class Lane {
             }
         }
     }
-
     public int getIsCarInLane() {
         return this.isCarInLane;
     }
-
     public void setIsCarInLane(int isCarInLane) {
         this.isCarInLane = isCarInLane;
     }//setting if car is in lane within the instance
@@ -87,7 +79,6 @@ public class Lane {
                     setDeerVisibility(index - 1, "off");
                 if (index == 7 && isCarInLane == 1)
                 {
-                    //gm.removeHeart();
                     new Thread(() -> {
                         if (mListener!=null)
                             mListener.onEvent();
@@ -114,6 +105,4 @@ public class Lane {
             }
         }.start();
     }
-
-
 }

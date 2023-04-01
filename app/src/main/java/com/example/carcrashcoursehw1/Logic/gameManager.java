@@ -86,10 +86,7 @@ public class gameManager implements OnCustomEventListener {
          // Vibrate for 500 milliseconds
             vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
       });
-
-
    }
-
    private void gameOver() {
       Log.i("Game Manager: ", "GAME OVER");
    }
@@ -111,16 +108,14 @@ public class gameManager implements OnCustomEventListener {
             }
             if (max==0)//in case all random failed to generate
                lanes[1].runLane();
-            handler.postDelayed(this,2000);
+            handler.postDelayed(this,1500);
          }
       };
       handler.postDelayed(runnable,0);
    }
-
    @Override
    public void onEvent() {
       removeHeart();
 
    }
-
 }
