@@ -13,6 +13,17 @@ public class Lane {
     public final int DELAY = 200;
    // private gameManager gm=new gameManager();
     private OnCustomEventListener mListener;
+
+    private int laneIndex=0;
+
+    public void setLaneIndex(int laneIndex) {
+        this.laneIndex = laneIndex;
+    }
+
+    public int getLaneIndex() {
+        return laneIndex;
+    }
+
     public void setOnCustomEventListener(OnCustomEventListener mListener)
     {
         this.mListener=mListener;
@@ -104,5 +115,10 @@ public class Lane {
                 Log.d("LaneTimer", "Timer D3d");
             }
         }.start();
+    }
+
+    public ImageView getObjFromLane(int index)
+    {
+        return objects[index];
     }
 }

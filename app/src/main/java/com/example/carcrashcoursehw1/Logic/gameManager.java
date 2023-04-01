@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.example.carcrashcoursehw1.OnCustomEventListener;
 
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -18,19 +19,20 @@ public class gameManager implements OnCustomEventListener {
 
    private final Lane[] lanes;
    private final ImageView[] hearts;
-   private int droppedHeartCounter=0;
+   private int droppedHeartCounter = 0;
    private final Context c;
    Vibrator vibrator;
 
-   public gameManager(Context c,Lane[] lanes, ImageView[] hearts) {
-      this.c=c;
-      vibrator=(Vibrator)c.getSystemService(Context.VIBRATOR_SERVICE);
+   public gameManager(Context c, Lane[] lanes, ImageView[] hearts) {
+      this.c = c;
+      vibrator = (Vibrator) c.getSystemService(Context.VIBRATOR_SERVICE);
       this.lanes = lanes;
       for (int i = 0; i < this.lanes.length; i++) {
          lanes[i].setOnCustomEventListener(this);
       }
-      this.hearts=hearts;
+      this.hearts = hearts;
    }
+
    public void moveCar(int direction)//1 = Right, 0 = Left, Works only with 3 Lanes!!!!!
    {
       switch (direction) {
@@ -39,13 +41,17 @@ public class gameManager implements OnCustomEventListener {
             assert lanes != null;
             if (lanes[1].getIsCarInLane() == 1) {
                lanes[1].setCarInLane(0);
+               lanes[1].getObjFromLane(7).setTag("deer");
                Log.i("Right_Lane2GoingOff", lanes[1].getIsCarInLane() + "");
                lanes[2].setCarInLane(1);
+               lanes[1].getObjFromLane(7).setTag("car");
                Log.i("Right_Lane3GoingOn", lanes[2].getIsCarInLane() + "");
             } else if (lanes[0].getIsCarInLane() == 1) {
                lanes[0].setCarInLane(0);
+               lanes[0].getObjFromLane(7).setTag("deer");
                Log.i("Right_Lane1GoingOff", lanes[0].getIsCarInLane() + "");
                lanes[1].setCarInLane(1);
+               lanes[1].getObjFromLane(7).setTag("car");
                Log.i("Right_Lane2GoingOn", lanes[1].getIsCarInLane() + "");
             }
             break;
@@ -55,38 +61,41 @@ public class gameManager implements OnCustomEventListener {
             assert lanes != null;
             if (lanes[1].getIsCarInLane() == 1) {
                lanes[1].setCarInLane(0);
+               lanes[1].getObjFromLane(7).setTag("deer");
                Log.i("Left_Lane2GoingOff", lanes[1].getIsCarInLane() + "");
                lanes[0].setCarInLane(1);
+               lanes[0].getObjFromLane(7).setTag("car");
                Log.i("Left_Lane1GoingOn", lanes[0].getIsCarInLane() + "");
             } else if (lanes[2].getIsCarInLane() == 1) {
                lanes[2].setCarInLane(0);
+               lanes[2].getObjFromLane(7).setTag("deer");
                Log.i("Left_Lane3GoingOff", lanes[2].getIsCarInLane() + "");
                lanes[1].setCarInLane(1);
+               lanes[1].getObjFromLane(7).setTag("car");
                Log.i("Left_Lane2GoingOn", lanes[1].getIsCarInLane() + "");
             }
             break;
          }
       }
    }
+
    public void removeHeart()//lo tov
    {
       Log.i("Game Manager: ", "CRASH!!!!!!!!!!!!!!!! -1 HP");
-      if (this.hearts.length-1-droppedHeartCounter>=0)
-      {
+      if (this.hearts.length - 1 - droppedHeartCounter >= 0) {
          this.hearts[droppedHeartCounter].setVisibility(View.INVISIBLE);
          droppedHeartCounter++;
-      }
-      else
-      {
-         droppedHeartCounter=0;
+      } else {
+         droppedHeartCounter = 0;
          gameOver();
       }
       new Handler(Looper.getMainLooper()).post(() -> {
-         Toast.makeText(c,"Ouch",Toast.LENGTH_SHORT).show();
+         Toast.makeText(c, "Ouch", Toast.LENGTH_SHORT).show();
          // Vibrate for 500 milliseconds
-            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+         vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
       });
    }
+
    private void gameOver() {
       Log.i("Game Manager: ", "GAME OVER");
    }
@@ -96,26 +105,67 @@ public class gameManager implements OnCustomEventListener {
       Runnable runnable = new Runnable() {
          @Override
          public void run() {
-            int max=0;
+            int max = 0;
             for (Lane lane : lanes) {
                Random r = new Random();
                int randomNum = r.nextInt(100) + 1;
                if (randomNum >= 40) {
-                  if (max<2)
+                  if (max < 2)
                      lane.runLane();
                   max++;
                }
             }
-            if (max==0)//in case all random failed to generate
+            if (max == 0)//in case all random failed to generate
                lanes[1].runLane();
-            handler.postDelayed(this,1500);
+            handler.postDelayed(this, 1500);
          }
       };
-      handler.postDelayed(runnable,0);
+      handler.postDelayed(runnable, 0);
    }
+
    @Override
    public void onEvent() {
       removeHeart();
 
+   }
+
+   public void runGame2() {
+      Handler handler1 = new Handler();
+      Runnable runnable2 = new Runnable() {
+         @Override
+         public void run() {
+            int laneLoc=generateLane();
+            lanes[laneLoc].getObjFromLane(0).setVisibility(View.VISIBLE);
+            for (Lane lane : lanes)
+            {
+               if (lane.getLaneIndex()>0&&lane.getObjFromLane(0).getVisibility()==View.VISIBLE)
+                  lane.setDeerVisibility(0,"off");
+               if (lane.getObjFromLane(lane.getLaneIndex()).getVisibility() == View.VISIBLE)
+               {
+                  if (lane.getIsCarInLane()==1 && lane.getLaneIndex()==6)
+                  {
+                     removeHeart();
+                  }
+                  if (!Objects.equals(lane.getObjFromLane(lane.getLaneIndex()).getTag(), "car"))
+                     lane.setDeerVisibility(lane.getLaneIndex(),"off");
+                  if (lane.getLaneIndex()!=7)
+                  {
+                     lane.setDeerVisibility(lane.getLaneIndex()+1,"on");
+                  }
+                  lane.setLaneIndex(lane.getLaneIndex()+1);
+               }
+               if (lane.getLaneIndex()==8)
+                  lane.setLaneIndex(0);
+
+            }
+            handler1.postDelayed(this, 1500);
+         }
+      };
+      handler1.postDelayed(runnable2,0);
+   }
+   private int generateLane()
+   {
+      Random r = new Random();
+      return r.nextInt(3);
    }
 }

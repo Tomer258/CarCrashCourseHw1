@@ -39,7 +39,7 @@ public class game_content extends AppCompatActivity {
         Lane mLane3= new Lane(0,iLane3);
         gm =new gameManager(this,new Lane[]{mLane1, mLane2, mLane3},
             new ImageView[]{findViewById(R.id.heart1),findViewById(R.id.heart2),findViewById(R.id.heart3)});
-        gm.runGame();
+        gm.runGame2();
 
     }
     private void initialStartingValues() {
