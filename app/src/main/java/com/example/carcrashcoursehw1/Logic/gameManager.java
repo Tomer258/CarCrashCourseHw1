@@ -23,6 +23,10 @@ public class gameManager implements OnCustomEventListener {
    private final Context c;
    Vibrator vibrator;
 
+   Handler handler1 = new Handler();
+
+   Runnable runnable2;
+
    public gameManager(Context c, Lane[] lanes, ImageView[] hearts) {
       this.c = c;
       vibrator = (Vibrator) c.getSystemService(Context.VIBRATOR_SERVICE);
@@ -138,8 +142,8 @@ public class gameManager implements OnCustomEventListener {
    }
 
    public void runGame2() {
-      Handler handler1 = new Handler();
-      Runnable runnable2 = new Runnable() {
+
+      runnable2 = new Runnable() {
          @Override
          public void run() {
             int laneLoc=generateLane();
@@ -180,5 +184,13 @@ public class gameManager implements OnCustomEventListener {
    {
       Random r = new Random();
       return r.nextInt(3);
+   }
+   public void killHandler()
+   {
+      handler1.removeCallbacksAndMessages(null);
+   }
+   public void restartHandler()
+   {
+      handler1.postDelayed(runnable2,0);
    }
 }

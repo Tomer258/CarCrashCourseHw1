@@ -18,6 +18,24 @@ public class game_content extends AppCompatActivity {
         initialGameManager();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        gm.killHandler();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gm.killHandler();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        gm.restartHandler();
+    }
+
     private void initialGameManager() {
         ImageView[] iLane1 ={findViewById(R.id.firstLaneDeer1),findViewById(R.id.firstLaneDeer2),
                             findViewById(R.id.firstLaneDeer3),findViewById(R.id.firstLaneDeer4),
