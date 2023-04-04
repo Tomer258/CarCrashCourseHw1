@@ -16,7 +16,7 @@ public class gameManager {
 
    private final Lane[] lanes;
    private final ImageView[] hearts;
-   private int droppedHeartCounter = 0;
+   private int droppedHeartCounter = 0,max=0;
    private final Context c;
    Vibrator vibrator;
 
@@ -108,6 +108,7 @@ public class gameManager {
                   lane.getObjFromLane(lane.getLaneIndex()).setVisibility(View.INVISIBLE);
                   lane.setIsDeerRunning(0);
                   lane.setLaneIndex(0);
+                  max--;
                }
                if(lane.getLaneIndex()==6 && lane.getIsCarInLane()==1)
                {
@@ -124,10 +125,11 @@ public class gameManager {
             }
 
             int whichLane=generateLane();
-            if (lanes[whichLane].getIsDeerRunning()==0)
+            if (lanes[whichLane].getIsDeerRunning()==0 && max<2)
             {
                lanes[whichLane].getObjFromLane(0).setVisibility(View.VISIBLE);
                lanes[whichLane].setIsDeerRunning(1);
+               max++;
             }
             handler1.postDelayed(this, 500);
          }
