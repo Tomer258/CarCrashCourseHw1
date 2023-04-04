@@ -1,38 +1,20 @@
 package com.example.carcrashcoursehw1.Logic;
 
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-
-import com.example.carcrashcoursehw1.OnCustomEventListener;
 import com.example.carcrashcoursehw1.R;
 public class Lane {
-    private int isCarInLane = 0,index=0;
-    private final ImageView[] objects = new ImageView[8];
-    public final int DELAY = 200;
-   // private gameManager gm=new gameManager();
-    private OnCustomEventListener mListener;
-
+    private int isCarInLane = 0;
+    private ImageView[] objects;
     private int laneIndex=0;
+    private  int isDeerRunning=0;
 
-    public void setLaneIndex(int laneIndex) {
-        this.laneIndex = laneIndex;
-    }
-
-    public int getLaneIndex() {
-        return laneIndex;
-    }
-
-    public void setOnCustomEventListener(OnCustomEventListener mListener)
-    {
-        this.mListener=mListener;
-    }
     public Lane(int isCarInLane, ImageView[] objects) {
         if (objects.length != 8)
             Log.e("Lane Copy", "arrays not same size");
         else {
-            System.arraycopy(objects, 0, this.objects, 0, objects.length);
+            this.objects=objects;
         }
         for (int i = 0; i < this.objects.length - 1; i++) {
             this.objects[i].setVisibility(View.INVISIBLE);
@@ -60,17 +42,26 @@ public class Lane {
             this.objects[7].setVisibility(View.INVISIBLE);
         }
     }
-    public void setDeerVisibility(int index, String mode) {
-        if (index >= 0 && index <= 7) {
-            if (mode.equals("off")) {
-                Log.i("setDeerVisFirstIf", "set index" +index +"off");
-                this.objects[index].setVisibility(View.INVISIBLE);
-            } else if (mode.equals("on")) {
-                Log.i("setDeerVisSecondIf", "set index" +index +"on");
-                this.objects[index].setVisibility(View.VISIBLE);
-            }
-        }
+    public ImageView getObjFromLane(int index)
+    {
+        return objects[index];
     }
+    public int getIsDeerRunning() {
+        return isDeerRunning;
+    }
+
+    public void setIsDeerRunning(int isDeerRunning) {
+        this.isDeerRunning = isDeerRunning;
+    }
+
+    public void setLaneIndex(int laneIndex) {
+        this.laneIndex = laneIndex;
+    }
+
+    public int getLaneIndex() {
+        return laneIndex;
+    }
+
     public int getIsCarInLane() {
         return this.isCarInLane;
     }
@@ -78,47 +69,6 @@ public class Lane {
         this.isCarInLane = isCarInLane;
     }//setting if car is in lane within the instance
 
-    public void runLane()
-    {
 
-        new CountDownTimer((long) DELAY * objects.length, DELAY) {
-            @Override
-            public void onTick(long l) {
-                Log.d("LaneTimer", "working on index: " + index + "");
-                setDeerVisibility(index, "on");
-                if (index > 0)
-                    setDeerVisibility(index - 1, "off");
-                if (index == 7 && isCarInLane == 1)
-                {
-                    new Thread(() -> {
-                        if (mListener!=null)
-                            mListener.onEvent();
-                    }).start();
-                }
 
-                index++;
-
-            }
-
-            @Override
-            public void onFinish() {
-                index = 0;
-                if (isCarInLane == 0)
-                    for (int i = 0; i < objects.length; i++) {
-                            setDeerVisibility(i, "off");
-                    }
-                else
-                {
-                    setDeerVisibility(7, "on");
-                }
-
-                Log.d("LaneTimer", "Timer D3d");
-            }
-        }.start();
-    }
-
-    public ImageView getObjFromLane(int index)
-    {
-        return objects[index];
-    }
 }
