@@ -146,8 +146,7 @@ public class gameManager implements OnCustomEventListener {
       runnable2 = new Runnable() {
          @Override
          public void run() {
-            int laneLoc=generateLane();
-            lanes[laneLoc].getObjFromLane(0).setVisibility(View.VISIBLE);
+            lanes[generateLane()].getObjFromLane(0).setVisibility(View.VISIBLE);
             for (Lane lane : lanes)
             {
                if (lane.getLaneIndex()>0&&lane.getObjFromLane(0).getVisibility()==View.VISIBLE)
@@ -191,6 +190,6 @@ public class gameManager implements OnCustomEventListener {
    }
    public void restartHandler()
    {
-      handler1.postDelayed(runnable2,0);
+      handler1.post(runnable2);
    }
 }

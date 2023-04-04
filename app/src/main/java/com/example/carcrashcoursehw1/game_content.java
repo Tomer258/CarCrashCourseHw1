@@ -33,7 +33,7 @@ public class game_content extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        gm.restartHandler();
+        //gm.restartHandler();
     }
 
     private void initialGameManager() {
