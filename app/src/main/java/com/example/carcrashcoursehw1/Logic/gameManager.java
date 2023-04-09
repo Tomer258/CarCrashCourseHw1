@@ -125,8 +125,24 @@ public class gameManager {
             }
 
             int whichLane=generateLane();
-            if (lanes[whichLane].getIsDeerRunning()==0 && max<2)
+            int free=1;
+            if (lanes[whichLane].getIsDeerRunning()==0)
             {
+               if (max==2)
+               {
+                  for (int i = 0; i < lanes.length; i++) {
+                     if (i!=whichLane) {
+                        if (lanes[i].getLaneIndex()<2)
+                           free=0;
+                     }
+                  }
+                  if (free==1)
+                  {
+                     lanes[whichLane].getObjFromLane(0).setVisibility(View.VISIBLE);
+                     lanes[whichLane].setIsDeerRunning(1);
+                     max++;
+                  }
+               }
                lanes[whichLane].getObjFromLane(0).setVisibility(View.VISIBLE);
                lanes[whichLane].setIsDeerRunning(1);
                max++;
