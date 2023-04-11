@@ -112,6 +112,10 @@ public class gameManager {
                }
                if(lane.getLaneIndex()==6 && lane.getIsCarInLane()==1)
                {
+                  lane.getObjFromLane(lane.getLaneIndex()).setVisibility(View.INVISIBLE);
+                  lane.setIsDeerRunning(0);
+                  lane.setLaneIndex(0);
+                  max--;
                   removeHeart();
                }
 
